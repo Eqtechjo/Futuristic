@@ -601,19 +601,20 @@ footer a i {
     '.hero, .card, .surveillance-section, section'
   );
 
-  sections.forEach(sec => {
-    // تأثير مخصص لـ hero
-    if (sec.classList.contains('hero')) {
-      sec.style.opacity = 0;
-      sec.style.transform = 'scale(0.95)';
-      sec.style.transition = 'all 1s ease-out';
-    } else {
-      sec.style.opacity = 0;
-      sec.style.transform = 'translateY(50px)';
-      sec.style.transition = 'all 0.8s ease-out';
-    }
-    observer.observe(sec);
-  });
+sections.forEach(sec => {
+  // تأثير مخصص لـ hero
+  if (sec.classList.contains('hero')) {
+    sec.style.opacity = 0;
+    sec.style.transform = 'perspective(1000px) rotateY(15deg) rotateX(10deg) scale(0.95)'; // تأثير Hero تقني وفخم
+    sec.style.transition = 'all 0.5s cubic-bezier(0.77, 0, 0.175, 1)'; // easing سلس وفخم
+    sec.style.backfaceVisibility = 'hidden';
+  } else {
+    sec.style.opacity = 0;
+    sec.style.transform = 'translateY(50px)';
+    sec.style.transition = 'all 0.8s ease-out';
+  }
+  observer.observe(sec);
+});
 
   // كلاس التنشيط العام والخاص بالـ hero
   const style = document.createElement('style');
@@ -796,3 +797,4 @@ footer a i {
     }, 5000);
   });
 </script>
+
