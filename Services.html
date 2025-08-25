@@ -53,7 +53,7 @@ header {
   flex-wrap: wrap;
 }
 header img {
-  height: 80px;
+  height: 50px;
 }
 nav {
   display: flex;
@@ -167,57 +167,77 @@ nav a:hover::after {
       transform: translateY(0);
     }
   }
-    /* Banner */
-.banner {
+/* ====== Hero ====== */
+.hero {
   position: relative;
   width: 100%;
-  height: 250px;
-  background: url('https://res.cloudinary.com/dcbxuax2c/image/upload/v1755172659/the-heart-and-importance-of-a-network-server-is-a-matter-of-feeling-right-and-fast-in-the-operation-of-the-computer-photo_ahelwr.jpg') center/cover no-repeat;
-  opacity: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 1.5s ease;
-  border-radius: 10px;
-  margin: 40px auto 60px;
-  max-width: 1200px;
+  height: 70vh;
+  overflow: hidden;
 }
-
-/* إضافة طبقة داكنة فوق الصورة */
-.banner::before {
+.hero-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.hero-slide::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3); /* 30% غمقان */
-  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  top: 0;
+  left: 0;
   z-index: 1;
 }
-
-/* تأكد أن محتوى البانر فوق الطبقة */
-.banner > * {
-  position: relative;
+.hero-slide.active {
+  opacity: 1;
+}
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  padding: 30px 40px;
   z-index: 2;
+  animation: fadeInUp 1s ease-in-out;
+}
+.hero-text h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
+  font-weight: 700;
+}
+.hero-text h1 .sub-text {
+  color: #0055cc;
+  font-weight: 500;
+  font-size: 32px;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+}
+.hero-text p {
+  font-size: 20px;
+  margin: 0;
+  color: #f2f2f2;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
 }
 
-    .banner.visible {
-      opacity: 1;
-    }
-    .banner h1 {
-      color: white;
-      font-size: 48px;
-      font-weight: 700;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-      user-select: none;
-    }
-    @media (max-width: 600px) {
-      .banner {
-        height: 180px;
-        margin: 20px auto 40px;
-      }
-      .banner h1 {
-        font-size: 32px;
-      }
-    }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate(-50%, -40%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+@media (max-width: 768px) {
+  .hero-text { padding: 20px; height: 65vh; }
+  .hero-text h1 { font-size: 28px; }
+  .hero-text h1 .sub-text { font-size: 16px; }
+  .hero-text p { font-size: 12px; }
+}
 
 /* ====== Footer ====== */
 footer {
@@ -257,7 +277,7 @@ footer a i {
 <body>
 
 <header>
-  <img src="https://res.cloudinary.com/dcbxuax2c/image/upload/v1755180424/Futurstic__1_-removebg-preview_1_1_vrs3pt_c_crop_w_300_h_200_xayikm.png" alt="Logo">
+  <img src="https://res.cloudinary.com/dcbxuax2c/image/upload/v1756153788/Futurstic_2_z7q3zv.png" alt="Logo">
 
   <div class="menu-toggle" onclick="toggleMenu()">
     <div></div>
@@ -279,15 +299,13 @@ footer a i {
 </header>
 
 
-
-<div class="banner" role="banner" aria-label="HiAi Products Banner">
-  <div style="text-align: center; color: white;">
-    <h1>Smart Solutions. Secure Future</h1>
-    <p style="font-size: 18px; margin-top: 8px; text-shadow: 1px 1px 5px rgba(0,0,0,0.7);">
-      Innovative IT & security services for a connected world
-    </p>
+<div class="hero">
+  <div class="hero-slide active" style="background-image: url('https://res.cloudinary.com/dcbxuax2c/image/upload/v1755172659/the-heart-and-importance-of-a-network-server-is-a-matter-of-feeling-right-and-fast-in-the-operation-of-the-computer-photo_ahelwr.jpg');">
+    <div class="hero-text">
+      <h1>Smart Solutions. Secure Future<span class="sub-text"></span></h1>
+      <p>Innovative IT & security services for a connected world</p>
+    </div>
   </div>
-</div>
 
 
 </div>
